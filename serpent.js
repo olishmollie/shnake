@@ -38,6 +38,22 @@ class Segment {
     this.x -= this.width;
     this.draw();
   }
+
+  move(dir) {
+    switch (dir) {
+      case "left":
+        this.moveLeft();
+        break;
+      case "right":
+        this.moveRight();
+        break;
+      case "up":
+        this.moveUp();
+        break;
+      case "down":
+        this.moveDown();
+    }
+  }
 }
 
 class Serpent {
