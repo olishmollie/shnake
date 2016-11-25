@@ -1,6 +1,6 @@
 var canvas = document.getElementById('snakeCanvas');
 var ctx = canvas.getContext('2d');
-var fps = 5;
+var fps = 10;
 var direction = "right";
 var over = false;
 
