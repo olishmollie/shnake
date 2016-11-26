@@ -21,14 +21,11 @@ document.addEventListener("keypress", function(e) {
   }
 })
 
-var seg = new Segment(canvas.width/2, canvas.height/2, ctx);
+var serpent = new Serpent(canvas.width/2, canvas.width/2, ctx);
 
-function run(direction) {
-  seg.move(direction);
-}
 runLoop = setInterval(function() {
-  run(direction);
-  if (seg.x == canvas.width - seg.width || seg.x == 0 || seg.y == canvas.height - seg.height || seg.y == 0) {
+  serpent.move(direction);
+  if (serpent.head.x == canvas.width - serpent.head.width || serpent.head.x == 0 || serpent.head.y == canvas.height - serpent.head.height || serpent.head.y == 0) {
     console.log("Game Over");
     clearInterval(runLoop);
   }
