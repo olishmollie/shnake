@@ -36,10 +36,12 @@ class Game {
   }
 
   offerTreat() {
-    var randX = Math.floor((Math.random() * this.canvas.width));
-    var randY = Math.floor((Math.random() * this.canvas.height));
-    this.treatPos.x = (parseInt(randX/10, 10)+1)*10;;
-    this.treatPos.y = (parseInt(randY/10, 10)+1)*10;;
+    function randTen(max) {
+      var num = Math.floor((Math.random() * max));
+      return parseInt(num/10, 10)*10;
+    }
+    this.treatPos.x = randTen(this.canvas.width);
+    this.treatPos.y = randTen(this.canvas.height);
     this.ctx.fillStyle = "rgb(255, 0, 0)";
     this.ctx.fillRect(this.treatPos.x, this.treatPos.y, 10, 10);
     this.ctx.fillStyle = "rgb(0, 0, 0)";
@@ -52,5 +54,4 @@ class Game {
       this.offerTreat();
     }
   }
-
 }
