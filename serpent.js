@@ -29,13 +29,14 @@ class Segment {
 }
 
 class Head extends Segment {
-  constructor(x, y, ctx, direction) {
+  constructor(x, y, ctx) {
     super(x, y, ctx);
-    this.direction = direction;
+    this.direction;
     this.draw(x, y);
   }
 
   move() {
+    console.log(this.direction);
     switch (this.direction) {
       case "up":
         this.moveTo(this.x, this.y - this.height);
