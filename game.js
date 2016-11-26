@@ -4,20 +4,13 @@ class Game {
     this.ctx = canvas.getContext('2d');
     this.serpent = new Serpent(canvas.width/2, canvas.height/2, this.ctx);
     this.fps = fps;
-    this.treatPos = {
-      x: null,
-      y: null
-    };
+    this.treat = new Treat(this.ctx);
   }
 
   reset() {
     if (game.over) {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.serpent = new Serpent(this.canvas.width/2, this.canvas.height/2, this.ctx);
-      this.treatPos = {
-        x: null,
-        y: null
-      };
       this.play();
     }
   }
@@ -38,6 +31,7 @@ class Game {
     var game = this;
     var loop = setInterval(function() {
       game.serpent.move();
+      game.offerTreat();
       game.resetTreat();
       game.writeCount();
       if (game.over) {
@@ -49,20 +43,14 @@ class Game {
   }
 
   offerTreat() {
-    function randTen(max) {
-      var num = Math.floor((Math.random() * max));
-      return parseInt(num/10, 10)*10;
-    }
-    this.treatPos.x = randTen(this.canvas.width);
-    this.treatPos.y = randTen(this.canvas.height);
-    this.ctx.fillStyle = "rgb(255, 0, 0)";
-    this.ctx.fillRect(this.treatPos.x, this.treatPos.y, 10, 10);
-    this.ctx.fillStyle = "rgb(0, 0, 0)";
+    this.treat.draw();
   }
 
   resetTreat() {
-    if (this.serpent.head.x == this.treatPos.x && this.serpent.head.y == this.treatPos.y) {
+    if (this.serpent.head.x == this.treat.x && this.serpent.head.y == this.treat.y) {
+      this.treat.clear();
       this.serpent.addSegment();
+      this.treat = new Treat(this.ctx);
       this.offerTreat();
     }
   }
@@ -71,5 +59,4 @@ class Game {
     var snakeLength = document.getElementById('snakeLength');
     snakeLength.innerHTML = "Snake Length: " + this.serpent.length;
   }
-
 }

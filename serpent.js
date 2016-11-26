@@ -57,6 +57,26 @@ class Head extends Segment {
   }
 }
 
+function randomPos(max) {
+  var num = Math.floor((Math.random() * max));
+  return parseInt(num/10, 10)*10;
+};
+
+class Treat extends Segment {
+  constructor(ctx, color = "rgb(255, 0, 0") {
+    var x = randomPos(ctx.canvas.width);
+    var y = randomPos(ctx.canvas.height);
+    super(x, y, ctx);
+    this.color = color;
+  }
+
+  draw() {
+    this.ctx.fillStyle = this.color;
+    super.draw(this.x, this.y);
+    this.ctx.fillStyle = "rgb(0, 0, 0)";
+  }
+}
+
 class Serpent {
   constructor(x, y, ctx, direction = "right") {
     this.head = new Head(x, y, ctx, direction);
