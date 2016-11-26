@@ -86,6 +86,14 @@ class Serpent {
     return this.segments[this.segments.length - 1];
   }
 
+  get touchingSelf() {
+    for (var i = 1; i < this.segments.length; i++) {
+      var seg = this.segments[i];
+      if (this.head.x == seg.x && this.head.y == seg.y) return true;
+    }
+    return false;
+  }
+
   addSegment() {
     var seg = new Segment(null, null, this.ctx);
     switch (this.tail.currAxis) {

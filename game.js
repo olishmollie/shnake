@@ -11,6 +11,10 @@ class Game {
   }
 
   get over() {
+    return this.outOfBounds || this.serpent.touchingSelf;
+  }
+
+  get outOfBounds() {
     return this.serpent.head.x > canvas.width - this.serpent.head.width || this.serpent.head.x < 0 || this.serpent.head.y > canvas.height - this.serpent.head.height || this.serpent.head.y < 0;
   }
 
