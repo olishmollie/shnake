@@ -23,6 +23,7 @@ document.addEventListener("keypress", function(e) {
 
 var serpent = new Serpent(canvas.width/2, canvas.width/2, ctx);
 
+console.log(serpent.segments.length);
 runLoop = setInterval(function() {
   serpent.move(direction);
   if (serpent.head.x == canvas.width - serpent.head.width || serpent.head.x == 0 || serpent.head.y == canvas.height - serpent.head.height || serpent.head.y == 0) {
