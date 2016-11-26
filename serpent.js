@@ -36,7 +36,6 @@ class Head extends Segment {
   }
 
   move() {
-    console.log(this.direction);
     switch (this.direction) {
       case "up":
         this.moveTo(this.x, this.y - this.height);
