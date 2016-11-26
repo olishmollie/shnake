@@ -27,6 +27,7 @@ class Game {
     var loop = setInterval(function() {
       game.serpent.move();
       game.resetTreat();
+      game.writeCount();
       if (game.over) {
         console.log("Game Over");
         clearInterval(loop);
@@ -45,13 +46,18 @@ class Game {
     this.ctx.fillStyle = "rgb(255, 0, 0)";
     this.ctx.fillRect(this.treatPos.x, this.treatPos.y, 10, 10);
     this.ctx.fillStyle = "rgb(0, 0, 0)";
+    console.log("Treat x: " + this.treatPos.x + " Treat y: " + this.treatPos.y);
   }
 
   resetTreat() {
     if (this.serpent.head.x == this.treatPos.x && this.serpent.head.y == this.treatPos.y) {
-      console.log("Ate treat!");
       this.serpent.addSegment();
       this.offerTreat();
     }
+  }
+
+  writeCount() {
+    var snakeLength = document.getElementById('snakeLength');
+    snakeLength.innerHTML = "Snake Length: " + this.serpent.length;
   }
 }

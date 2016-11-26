@@ -82,6 +82,10 @@ class Serpent {
 
   }
 
+  get length() {
+    return this.segments.length;
+  }
+
   get tail() {
     return this.segments[this.segments.length - 1];
   }

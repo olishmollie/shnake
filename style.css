@@ -5,5 +5,11 @@ body {
 canvas {
   display: block;
   background-color: white;
-  margin: 100px auto;
+  margin: 100px auto 0;
+}
+
+p#snakeLength {
+  width: 300px;
+  color: red;
+  margin: 2px auto;
 }
