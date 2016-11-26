@@ -4,18 +4,18 @@ var fps = 10;
 var game = new Game(canvas, fps);
 game.play();
 
-document.addEventListener("keypress", function(e) {
-  switch (e.charCode) {
-    case 105: 
+document.addEventListener("keydown", function(e) {
+  switch (e.keyCode) {
+    case 38: 
       game.direction = "up";
       break;
-    case 107:
+    case 40:
       game.direction = "down";
       break;
-    case 106: 
+    case 37: 
       game.direction = "left";
       break;
-    case 108:
+    case 39:
       game.direction = "right";
       break;
   }
