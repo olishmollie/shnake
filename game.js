@@ -31,8 +31,8 @@ class Game {
     var game = this;
     var loop = setInterval(function() {
       game.serpent.move();
-      game.offerTreat();
       game.resetTreat();
+      game.offerTreat();
       game.writeCount();
       if (game.over) {
         console.log("Game Over");
@@ -48,10 +48,9 @@ class Game {
 
   resetTreat() {
     if (this.serpent.head.x == this.treat.x && this.serpent.head.y == this.treat.y) {
-      this.treat.clear();
+      // this.treat.clear();
       this.serpent.addSegment();
       this.treat = new Treat(this.ctx);
-      this.offerTreat();
     }
   }
 
