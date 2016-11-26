@@ -21,14 +21,7 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
+var resetButton = document.getElementById("resetButton");
+resetButton.addEventListener("click", function(e) {
+  game.reset();
+});

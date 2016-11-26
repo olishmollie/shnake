@@ -8,8 +8,15 @@ canvas {
   margin: 100px auto 0;
 }
 
-p#snakeLength {
+main p, main button {
   width: 300px;
-  color: red;
   margin: 2px auto;
+}
+
+p#snakeLength {
+  color: red;
+}
+
+button#resetButton {
+  display: block;
 }

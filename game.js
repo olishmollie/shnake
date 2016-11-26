@@ -10,6 +10,18 @@ class Game {
     };
   }
 
+  reset() {
+    if (game.over) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.serpent = new Serpent(this.canvas.width/2, this.canvas.height/2, this.ctx);
+      this.treatPos = {
+        x: null,
+        y: null
+      };
+      this.play();
+    }
+  }
+
   get over() {
     return this.outOfBounds || this.serpent.touchingSelf;
   }
@@ -46,7 +58,6 @@ class Game {
     this.ctx.fillStyle = "rgb(255, 0, 0)";
     this.ctx.fillRect(this.treatPos.x, this.treatPos.y, 10, 10);
     this.ctx.fillStyle = "rgb(0, 0, 0)";
-    console.log("Treat x: " + this.treatPos.x + " Treat y: " + this.treatPos.y);
   }
 
   resetTreat() {
@@ -60,4 +71,5 @@ class Game {
     var snakeLength = document.getElementById('snakeLength');
     snakeLength.innerHTML = "Snake Length: " + this.serpent.length;
   }
+
 }
