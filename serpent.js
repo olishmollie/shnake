@@ -7,62 +7,66 @@ class Segment {
     this.width = 10;
   }
 
-  draw() {
-    this.ctx.fillRect(this.x, this.y, this.height, this.width);
+  moveTo(newX, newY) {
+    this.clear();
+    this.draw(newX, newY);
+    this.x = newX;
+    this.y = newY;
+  }
+
+  draw(x, y) {
+    this.ctx.fillRect(x, y, this.height, this.width);
   }
 
   clear() {
     this.ctx.clearRect(this.x, this.y, this.height, this.width);
   }
+}
 
-  moveUp() {
-    this.clear();
-    this.y -= this.height;
-    this.draw();
-  }
+class Head extends Segment {
 
-  moveDown() {
-    this.clear();
-    this.y += this.height;
-    this.draw();
-  }
-
-  moveRight() {
-    this.clear();
-    this.x += this.width;
-    this.draw();
-  }
-
-  moveLeft() {
-    this.clear();
-    this.x -= this.width;
-    this.draw();
-  }
-
-  move(dir) {
-    switch (dir) {
-      case "left":
-        this.moveLeft();
-        break;
-      case "right":
-        this.moveRight();
-        break;
+  move(direction) {
+    switch (direction) {
       case "up":
-        this.moveUp();
+        this.moveTo(this.x, this.y - this.height);
         break;
       case "down":
-        this.moveDown();
+        this.moveTo(this.x, this.y + this.height);
+        break;
+      case "left":
+        this.moveTo(this.x - this.width, this.y);
+        break;
+      case "right":
+        this.moveTo(this.x + this.width, this.y);
+        break;
     }
   }
 }
 
+
 class Serpent {
-  constructor() {
-    this.segments = [new Segment()];
-    this.head = this.segments[this.segments.length - 1]
+  constructor(x, y, ctx) {
+    this.head = new Head(x, y, ctx);
+    this.segments = [this.head];
+  }
+
+  move(direction) {
+    // for (var i = 1; i < this.segments.length; i++) {
+    //   this.segments[i].targetX = this.segments[i - 1].x;
+    //   this.segments[i].targetY = this.segments[i - 1].y;
+    // }
+    this.head.move(direction);
+    // for (var i = 1; i < this.segments.length; i++) {
+    //   this.segments[i].moveTo(this.segments[i].targetX, this.segments[i].targetY);
+    // }
+  }
+
+  get tail() {
+    return this.segments[this.segments.length - 1];
   }
 
   addSegment() {
-    this.segments.shift(new Segment());
+    var newSeg = new Segment(this.tail.x, this.tail.y, this.ctx);
+    this.segments.push(newSeg);
   }
 }
