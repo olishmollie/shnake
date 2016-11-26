@@ -7,12 +7,8 @@ class Game {
     this.treat = new Treat(this.ctx);
   }
 
-  reset() {
-    if (game.over) {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.serpent = new Serpent(this.canvas.width/2, this.canvas.height/2, this.ctx);
-      this.play();
-    }
+  get score() {
+    return this.serpent.length;
   }
 
   get over() {
@@ -27,19 +23,29 @@ class Game {
     this.serpent.head.direction = direction;
   }
 
+  reset() {
+    if (game.over) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.serpent = new Serpent(this.canvas.width/2, this.canvas.height/2, this.ctx);
+      this.play();
+    }
+  }
+
   play() {
     var game = this;
     var loop = setInterval(function() {
       game.serpent.move();
       game.checkTreat();
       game.offerTreat();
-      game.writeCount();
+      game.saveScore();
       if (game.over) {
         console.log("Game Over");
         clearInterval(loop);
       }
     }, 1000/this.fps);
     this.offerTreat();
+    console.log(this.score);
+    highScore();
   }
 
   offerTreat() {
@@ -53,8 +59,14 @@ class Game {
     }
   }
 
-  writeCount() {
+  saveScore() {
     var snakeLength = document.getElementById('snakeLength');
-    snakeLength.innerHTML = "Snake Length: " + this.serpent.length;
+    snakeLength.innerHTML = "Snake Length: " + this.score;
+    if (localStorage.highScore) {
+      if (this.score > localStorage.highScore) {
+        localStorage.highScore = this.score;
+        highScore();
+      }
+    }
   }
 }
