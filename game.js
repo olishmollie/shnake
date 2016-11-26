@@ -11,7 +11,7 @@ class Game {
   }
 
   get over() {
-    return this.serpent.head.x == canvas.width - this.serpent.head.width || this.serpent.head.x == 0 || this.serpent.head.y == canvas.height - this.serpent.head.height || this.serpent.head.y == 0;
+    return this.serpent.head.x > canvas.width - this.serpent.head.width || this.serpent.head.x < 0 || this.serpent.head.y > canvas.height - this.serpent.head.height || this.serpent.head.y < 0;
   }
 
   set direction(direction) {
@@ -32,8 +32,8 @@ class Game {
   }
 
   offerTreat() {
-    var randX = Math.floor((Math.random() * this.canvas.width) + 10);
-    var randY = Math.floor((Math.random() * this.canvas.height) + 10);
+    var randX = Math.floor((Math.random() * this.canvas.width));
+    var randY = Math.floor((Math.random() * this.canvas.height));
     this.treatPos.x = (parseInt(randX/10, 10)+1)*10;;
     this.treatPos.y = (parseInt(randY/10, 10)+1)*10;;
     this.ctx.fillStyle = "rgb(255, 0, 0)";
