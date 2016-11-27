@@ -1,5 +1,6 @@
 body {
   background: #333;
+  font-family: 'Helvetica', sans-serif;
 }
 
 canvas {
@@ -13,8 +14,22 @@ main p, main button {
   margin: 2px auto;
 }
 
-p#snakeLength {
+main p {
+  position: relative;
+}
+
+#snakeLength, #highScore {
   color: red;
+}
+
+#snakeLength {
+  position: absolute;
+  left: 0;
+}
+
+#highScore {
+  position: absolute;
+  right: 0;
 }
 
 button#resetButton {
