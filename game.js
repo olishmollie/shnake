@@ -45,7 +45,6 @@ class Game {
       }
     }, 1000/this.fps);
     this.offerTreat();
-    console.log(this.score);
     highScore();
   }
 
