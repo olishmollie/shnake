@@ -24,6 +24,12 @@ canvas {
   left: 0;
 }
 
+#resetButton {
+  color: white;
+  background-color: inherit;
+  margin-bottom: 1px;
+}
+
 #highScore, #gameOver {
   position: absolute;
   right: 0;
