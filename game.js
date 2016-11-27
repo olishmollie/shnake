@@ -25,6 +25,7 @@ class Game {
 
   reset() {
     if (game.over) {
+      gameOver.style.display = "none";
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.serpent = new Serpent(this.canvas.width/2, this.canvas.height/2, this.ctx);
       this.play();
@@ -39,8 +40,8 @@ class Game {
       game.offerTreat();
       game.saveScore();
       if (game.over) {
-        console.log("Game Over");
         clearInterval(loop);
+        gameOver.style.display = "initial";
       }
     }, 1000/this.fps);
     this.offerTreat();

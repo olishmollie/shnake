@@ -3,19 +3,16 @@ body {
   font-family: 'Helvetica', sans-serif;
 }
 
+main {
+  width: 300px;
+  margin: 100px auto 0;
+  position: relative;
+}
+
 canvas {
   display: block;
   background-color: white;
-  margin: 100px auto 0;
-}
-
-main p, main button {
-  width: 300px;
-  margin: 2px auto;
-}
-
-main p {
-  position: relative;
+  margin: auto;
 }
 
 #snakeLength, #highScore {
@@ -27,11 +24,12 @@ main p {
   left: 0;
 }
 
-#highScore {
+#highScore, #gameOver {
   position: absolute;
   right: 0;
 }
 
-button#resetButton {
-  display: block;
+#gameOver {
+  display: none;
+  color: red;
 }
