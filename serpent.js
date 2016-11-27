@@ -35,6 +35,12 @@ class Head extends Segment {
     this.draw(x, y);
   }
 
+  draw(x, y) {
+    super.draw(x, y);
+    this.ctx.clearRect(x + 2, y + 2, 2, 2);
+    this.ctx.clearRect(x + 6, y + 2, 2, 2);
+  }
+
   move() {
     switch (this.direction) {
       case "up":
