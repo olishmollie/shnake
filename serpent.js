@@ -37,8 +37,32 @@ class Head extends Segment {
 
   draw(x, y) {
     super.draw(x, y);
-    this.ctx.clearRect(x + 2, y + 2, 2, 2);
-    this.ctx.clearRect(x + 6, y + 2, 2, 2);
+    var head = this;
+    function drawLeftEye() {
+      head.ctx.clearRect(x + 2, y + 2, 2, 2);
+    }
+    function drawRightEye() {
+      head.ctx.clearRect(x + 6, y + 2, 2, 2);
+    }
+    function drawBottomEyes() {
+      head.ctx.clearRect(x + 2, y + 6, 2, 2);
+      head.ctx.clearRect(x + 6, y + 6, 2, 2);
+    }
+    switch (this.currAxis) {
+      case "+x":
+        drawRightEye();
+        break;
+      case "-x":
+        drawLeftEye();
+        break;
+      case "+y":
+        drawBottomEyes();
+        break;
+      default:
+        drawRightEye();
+        drawLeftEye();
+    }
+  
   }
 
   move() {
