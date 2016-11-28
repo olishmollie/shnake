@@ -26,7 +26,7 @@ canvas.addEventListener("touchstart", function(e) {
   var x = parseInt(getTouchXPos(canvas, e)/10, 10)*10;
   var y = parseInt(getTouchYPos(canvas, e)/10, 10)*10;
   var head = game.serpent.head;
-  var bufferSize = 150;
+  var bufferSize = 70;
 
   if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { game.direction = "up" }
   else if (x.between(head.x - bufferSize, head.x + bufferSize) && y >= head.y) { game.direction = "down" }
