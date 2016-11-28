@@ -9,6 +9,10 @@ main {
   position: relative;
 }
 
+a {
+  color: red;
+}
+
 canvas {
   display: block;
   background-color: white;
@@ -27,7 +31,8 @@ canvas {
 #resetButton {
   color: white;
   background-color: inherit;
-  margin-bottom: 1px;
+  display: block;
+  margin: auto;
 }
 
 #highScore, #gameOver {

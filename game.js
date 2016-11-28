@@ -23,8 +23,8 @@ class Game {
     return this.serpent.head.direction;
   }
 
-  set direction(direction) {
-    this.serpent.head.direction = direction;
+  set direction(newDirection) {
+    this.serpent.head.direction = newDirection;
   }
 
   reset() {
