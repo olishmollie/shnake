@@ -31,6 +31,7 @@ document.addEventListener("keydown", function(e) {
 });
 
 canvas.addEventListener("touchstart", function(e) {
+  e.preventDefault();
   var x = parseInt(getTouchXPos(canvas, e)/10, 10)*10;
   var y = parseInt(getTouchYPos(canvas, e)/10, 10)*10;
   var head = game.serpent.head;
