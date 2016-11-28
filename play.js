@@ -30,12 +30,13 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
+var bufferSize = 70;
+
 canvas.addEventListener("touchstart", function(e) {
   e.preventDefault();
-  var x = parseInt(getTouchXPos(canvas, e)/10, 10)*10;
+  var x = parseInt(getTouchXPos(canvas, e)/10, 10)*10
   var y = parseInt(getTouchYPos(canvas, e)/10, 10)*10;
   var head = game.serpent.head;
-  var bufferSize = 70;
 
   if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { 
     if (game.direction != "down") game.direction = "up" 
@@ -51,6 +52,26 @@ canvas.addEventListener("touchstart", function(e) {
     console.log("Touched in unknown direction") 
   };
 });
+
+canvas.addEventListener("click", function(e) {
+  e.preventDefault();
+  var rect = canvas.getBoundingClientRect();
+  var x = parseInt((e.clientX - rect.left)/10)*10;
+  var y = parseInt((e.clientY - rect.top)/10)*10;
+  var head = game.serpent.head;
+
+  if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { 
+    if (game.direction != "down") game.direction = "up" 
+  } else if (x.between(head.x - bufferSize, head.x + bufferSize) && y >= head.y) { 
+    if (game.direction != "up") game.direction = "down" 
+  } else if (y.between(head.y - bufferSize, head.y + bufferSize) && x <= head.x) { 
+    if (game.direction != "right") game.direction = "left" 
+  } else if (y.between(head.y - bufferSize, head.y + bufferSize) && x >= head.x) { 
+    if (game.direction != "left") game.direction = "right" 
+  } else { 
+    console.log("Clicked in unknown direction");
+  };
+})
 
 function getTouchXPos(canvas, e) {
   var rect = canvas.getBoundingClientRect();
