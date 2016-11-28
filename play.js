@@ -60,7 +60,6 @@ canvas.addEventListener("touchstart", function(e) {
         console.log("Clicked in unknown direction");
       };
   }
-  console.log(game.direction);
 });
 
 function getTouchXPos(canvas, e) {
