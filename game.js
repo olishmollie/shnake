@@ -19,6 +19,10 @@ class Game {
     return this.serpent.head.x > canvas.width - this.serpent.head.width || this.serpent.head.x < 0 || this.serpent.head.y > canvas.height - this.serpent.head.height || this.serpent.head.y < 0;
   }
 
+  get direction() {
+    return this.serpent.head.direction;
+  }
+
   set direction(direction) {
     this.serpent.head.direction = direction;
   }

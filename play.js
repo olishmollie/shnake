@@ -8,16 +8,24 @@ game.play();
 document.addEventListener("keydown", function(e) {
   switch (e.keyCode) {
     case 38: 
-      game.direction = "up";
+      if (game.direction != "down") {
+        game.direction = "up";
+      }
       break;
     case 40:
-      game.direction = "down";
+      if (game.direction != "up") {
+        game.direction = "down";
+      }
       break;
     case 37: 
-      game.direction = "left";
+      if (game.direction != "right") {
+        game.direction = "left";
+      }
       break;
     case 39:
-      game.direction = "right";
+      if (game.direction != "left") {
+        game.direction = "right";
+      }
       break;
   }
 });
@@ -28,11 +36,19 @@ canvas.addEventListener("touchstart", function(e) {
   var head = game.serpent.head;
   var bufferSize = 70;
 
-  if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { game.direction = "up" }
-  else if (x.between(head.x - bufferSize, head.x + bufferSize) && y >= head.y) { game.direction = "down" }
-  else if (y.between(head.y - bufferSize, head.y + bufferSize) && x <= head.x) { game.direction = "left" }
-  else if (y.between(head.y - bufferSize, head.y + bufferSize) && x >= head.x) { game.direction = "right" }
-  else { console.log("Touch in unknown direction") };
+  if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { 
+    if (game.direction != "down") game.direction = "up" 
+  } else if (x.between(head.x - bufferSize, head.x + bufferSize) && y >= head.y) { 
+    if (game.direction != "up") game.direction = "down" 
+  } else if (y.between(head.y - bufferSize, head.y + bufferSize) && x <= head.x) { 
+    if (game.direction != "right") game.direction = "left" 
+  }
+  else if (y.between(head.y - bufferSize, head.y + bufferSize) && x >= head.x) { 
+    if (game.direction != "left") game.direction = "right" 
+  }
+  else { 
+    console.log("Touched in unknown direction") 
+  };
 });
 
 function getTouchXPos(canvas, e) {
