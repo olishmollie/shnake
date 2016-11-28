@@ -87,16 +87,11 @@ class Head extends Segment {
   }
 }
 
-function randomPos(max) {
-  var num = Math.floor((Math.random() * max));
-  return parseInt(num/10, 10)*10;
-};
-
 class Treat extends Segment {
   constructor(ctx, color = "rgb(255, 0, 0") {
-    var x = randomPos(ctx.canvas.width);
-    var y = randomPos(ctx.canvas.height);
-    super(x, y, ctx);
+    super(null, null, ctx);
+    this.x = this.randomPos(ctx.canvas.width);
+    this.y = this.randomPos(ctx.canvas.height);
     this.color = color;
   }
 
@@ -104,6 +99,11 @@ class Treat extends Segment {
     this.ctx.fillStyle = this.color;
     super.draw(this.x, this.y);
     this.ctx.fillStyle = "rgb(0, 0, 0)";
+  }
+
+  randomPos(max) {
+    var num = Math.floor((Math.random() * max));
+    return parseInt(num/10, 10)*10;
   }
 }
 

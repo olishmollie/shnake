@@ -22,6 +22,29 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
+canvas.addEventListener("touchstart", function(e) {
+  var x = parseInt(getTouchXPos(canvas, e)/10, 10)*10;
+  var y = parseInt(getTouchYPos(canvas, e)/10, 10)*10;
+  var head = game.serpent.head;
+  var bufferSize = 50;
+
+  if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { game.direction = "up" }
+  else if (x.between(head.x - bufferSize, head.x + bufferSize) && y >= head.y) { game.direction = "down" }
+  else if (y.between(head.y - bufferSize, head.y + bufferSize) && x <= head.x) { game.direction = "left" }
+  else if (y.between(head.y - bufferSize, head.y + bufferSize) && x >= head.x) { game.direction = "right" }
+  else { console.log("Touch in unknown direction") };
+});
+
+function getTouchXPos(canvas, e) {
+  var rect = canvas.getBoundingClientRect();
+  return e.touches["0"].clientX - rect.left;
+}
+
+function getTouchYPos(canvas, e) {
+  var rect = canvas.getBoundingClientRect();
+  return e.touches["0"].clientY - rect.top;
+}
+
 function highScore() {
   if (typeof(Storage) !== "undefined") {
     if (localStorage.highScore) {
