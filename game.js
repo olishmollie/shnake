@@ -7,6 +7,7 @@ class Game {
     this.treat = new Treat(this.ctx);
     this.addArrowControls();
     this.addTouchControls();
+    this.addResetEvent();
   }
 
   get score() {
@@ -151,6 +152,14 @@ class Game {
           console.log("Clicked in unknown direction");
         };
       }
+    });
+  }
+
+  addResetEvent() {
+    var resetButton = document.getElementById("resetButton");
+    var game = this;
+    resetButton.addEventListener("click", function(e) {
+      game.reset();
     });
   }
 }
