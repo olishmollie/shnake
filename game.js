@@ -6,6 +6,7 @@ class Game {
     this.fps = fps;
     this.treat = new Treat(this.ctx);
     this.addArrowControls();
+    this.addTouchControls();
   }
 
   get score() {
@@ -106,6 +107,49 @@ class Game {
             game.direction = "right";
           }
           break;
+      }
+    });
+  }
+
+  addTouchControls() {
+    canvas.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    var bufferSize = 70;
+    var x = parseInt(getTouchXPos(canvas, e)/10, 10)*10
+    var y = parseInt(getTouchYPos(canvas, e)/10, 10)*10;
+    var head = game.serpent.head;
+
+    function getTouchXPos(canvas, e) {
+      var rect = canvas.getBoundingClientRect();
+      return e.touches["0"].clientX - rect.left;
+    }
+
+    function getTouchYPos(canvas, e) {
+      var rect = canvas.getBoundingClientRect();
+      return e.touches["0"].clientY - rect.top;
+    }
+
+    switch (game.direction) {
+      case "up":
+      case "down":
+        game.direction = (x <= head.x) ? "left" : "right"
+        break;
+      case "left":
+      case "right":
+        game.direction = (y <= head.y) ? "up" : "down"
+        break;
+      default:
+        if (x.between(head.x - bufferSize, head.x + bufferSize) && y <= head.y) { 
+          game.direction = "up" 
+        } else if (x.between(head.x - bufferSize, head.x + bufferSize) && y >= head.y) { 
+            game.direction = "down" 
+        } else if (y.between(head.y - bufferSize, head.y + bufferSize) && x <= head.x) { 
+            game.direction = "left" 
+        } else if (y.between(head.y - bufferSize, head.y + bufferSize) && x >= head.x) { 
+            game.direction = "right" 
+        } else { 
+          console.log("Clicked in unknown direction");
+        };
       }
     });
   }
