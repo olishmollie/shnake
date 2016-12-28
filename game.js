@@ -5,6 +5,7 @@ class Game {
     this.serpent = new Serpent(canvas.width/2, canvas.height/2, this.ctx);
     this.fps = fps;
     this.treat = new Treat(this.ctx);
+    this.addArrowControls();
   }
 
   get score() {
@@ -72,5 +73,32 @@ class Game {
         highScore();
       }
     }
+  }
+
+  addArrowControls() {
+    document.addEventListener("keydown", function(e) {
+      switch (e.keyCode) {
+        case 38: 
+          if (game.direction != "down") {
+            game.direction = "up";
+          }
+          break;
+        case 40:
+          if (game.direction != "up") {
+            game.direction = "down";
+          }
+          break;
+        case 37: 
+          if (game.direction != "right") {
+            game.direction = "left";
+          }
+          break;
+        case 39:
+          if (game.direction != "left") {
+            game.direction = "right";
+          }
+          break;
+      }
+    });
   }
 }

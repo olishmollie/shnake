@@ -5,31 +5,6 @@ var game = new Game(canvas, fps);
 highScore();
 game.play();
 
-document.addEventListener("keydown", function(e) {
-  switch (e.keyCode) {
-    case 38: 
-      if (game.direction != "down") {
-        game.direction = "up";
-      }
-      break;
-    case 40:
-      if (game.direction != "up") {
-        game.direction = "down";
-      }
-      break;
-    case 37: 
-      if (game.direction != "right") {
-        game.direction = "left";
-      }
-      break;
-    case 39:
-      if (game.direction != "left") {
-        game.direction = "right";
-      }
-      break;
-  }
-});
-
 var bufferSize = 70;
 
 canvas.addEventListener("touchstart", function(e) {
