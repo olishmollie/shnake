@@ -2,7 +2,6 @@ var canvas = document.getElementById('snakeCanvas');
 var fps = 10;
 
 var game = new Game(canvas, fps);
-highScore();
 game.play();
 
 var bufferSize = 70;
@@ -45,19 +44,6 @@ function getTouchXPos(canvas, e) {
 function getTouchYPos(canvas, e) {
   var rect = canvas.getBoundingClientRect();
   return e.touches["0"].clientY - rect.top;
-}
-
-function highScore() {
-  if (typeof(Storage) !== "undefined") {
-    if (localStorage.highScore) {
-      if (game.score > localStorage.highScore) localStorage.highScore = game.score;
-    } else {
-      localStorage.highScore = game.score;
-    }
-    document.getElementById("highScore").innerHTML = "High Score: " + localStorage.highScore;
-  } else {
-    document.getElementById("highScore").innerHTML = "Sorry, no web storage.";
-  }
 }
 
 var resetButton = document.getElementById("resetButton");

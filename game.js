@@ -50,7 +50,6 @@ class Game {
       }
     }, 1000/this.fps);
     this.offerTreat();
-    highScore();
   }
 
   offerTreat() {
@@ -67,11 +66,20 @@ class Game {
   saveScore() {
     var snakeLength = document.getElementById('snakeLength');
     snakeLength.innerHTML = "Snake Length: " + this.score;
-    if (localStorage.highScore) {
-      if (this.score > localStorage.highScore) {
-        localStorage.highScore = this.score;
-        highScore();
+    this.highScore();
+  }
+
+  highScore() {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.highScore) {
+        if (this.score > localStorage.highScore) 
+          localStorage.highScore = game.score;
+      } else {
+        localStorage.highScore = game.score;
       }
+      document.getElementById("highScore").innerHTML = "High Score: " + localStorage.highScore;
+    } else {
+      document.getElementById("highScore").innerHTML = "Sorry, no web storage.";
     }
   }
 
